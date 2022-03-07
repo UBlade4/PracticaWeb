@@ -1,4 +1,4 @@
 package com.dws.practicaweb;
 
-public class prueba {
+public class prueba { //cambio
 }
