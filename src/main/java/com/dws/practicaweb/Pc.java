@@ -1,18 +1,18 @@
 package com.dws.practicaweb;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-
 public class Pc {
 
     private long idPc;
     private Componentes componentes;
+
+    public Pc(Componentes componentes){
+        this.componentes=componentes;
+    }
 
 
 }

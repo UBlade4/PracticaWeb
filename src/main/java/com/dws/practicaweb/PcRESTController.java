@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("/pcs")
+@RequestMapping("/api")
 public class PcRESTController {
 
     private Map<Long, Pc> pcs = new ConcurrentHashMap<>();

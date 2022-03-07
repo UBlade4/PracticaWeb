@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("/juegos")
+@RequestMapping("/api")
 public class JuegoRESTController {
 
     private Map<Long, Juego> juegos = new ConcurrentHashMap<>();
