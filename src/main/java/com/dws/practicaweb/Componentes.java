@@ -43,4 +43,9 @@ public class Componentes {
     public void setProcesador(String procesador) {
         this.procesador = procesador;
     }
+
+    @Override
+    public String toString() {
+        return "Ram= " + ram + "grafica: " + grafica + "procesador: " + procesador;
+    }
 }

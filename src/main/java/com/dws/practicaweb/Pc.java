@@ -14,5 +14,8 @@ public class Pc {
         this.componentes=componentes;
     }
 
-
+    @Override
+    public String toString() {
+        return "El pc tiene estos componentes:" + componentes;
+    }
 }

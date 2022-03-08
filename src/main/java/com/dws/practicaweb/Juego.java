@@ -16,4 +16,8 @@ public class Juego {
         this.requisitos=requisitos;
     }
 
+    @Override
+    public String toString() {
+        return "El juego " + nombre + "Tiene estos requsitos:" + requisitos;
+    }
 }
