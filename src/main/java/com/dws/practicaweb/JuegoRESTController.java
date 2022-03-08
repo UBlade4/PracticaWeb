@@ -1,9 +1,10 @@
 package com.dws.practicaweb;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,10 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/apiJuego")
 public class JuegoRESTController {
 
-    private Map<Long, Juego> juegos = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
-
-
+    @Autowired
+    JuegoService service;
 
     @GetMapping("/")
     public Collection<Juego> getJuegos() {

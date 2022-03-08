@@ -9,15 +9,17 @@ public class Juego {
 
     private String nombre;
     private long idJuego;
-    private Componentes requisitos;
+    private Componentes requisitosMax;
+    private Componentes requisitosMin;
 
-    public Juego(String nombre, Componentes requisitos){
+    public Juego(String nombre, Componentes requisitosMin, Componentes requisitosMax){
         this.nombre=nombre;
-        this.requisitos=requisitos;
+        this.requisitosMax=requisitosMin;
+        this.requisitosMin=requisitosMax;
     }
 
     @Override
     public String toString() {
-        return "El juego " + nombre + "Tiene estos requsitos:" + requisitos;
+        return "El juego " + nombre + "Tiene estos requsitos minimos:" + requisitosMin + "Y estos requisitos recomendados: " + requisitosMax;
     }
 }

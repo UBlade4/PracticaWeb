@@ -12,7 +12,7 @@ public class Componentes {
     public Componentes(int ram, String grafica, String procesador ){
         this.grafica=grafica;
         this.procesador=procesador;
-        if(ram ==8||ram==16||ram==32){
+        if(ram==4||ram ==8||ram==12||ram==16||ram==32){
             this.ram=ram;
         }else{
             ram=0;
