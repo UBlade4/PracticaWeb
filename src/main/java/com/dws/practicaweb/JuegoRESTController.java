@@ -1,6 +1,7 @@
 package com.dws.practicaweb;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +18,15 @@ public class JuegoRESTController {
     @Autowired
     JuegoService service;
 
-    @GetMapping("/")
-    public Collection<Juego> getJuegos() {
-        return juegos.values();
+    @GetMapping("juegos")
+    public HttpEntity<?> getJuegos() {
+        if (service.getJuegos().isEmpty()) {
+            return new ResponseEntity<>("There are no games", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(service.getJuegos(), HttpStatus.OK);
+        }
     }
-
+    //hasta aqui hecho
     @GetMapping("/{idJuego}")
     public ResponseEntity<Juego> getJuego(@PathVariable long idJuego) {
 

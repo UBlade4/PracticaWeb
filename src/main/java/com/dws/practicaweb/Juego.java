@@ -16,6 +16,7 @@ public class Juego {
         this.nombre=nombre;
         this.requisitosMax=requisitosMin;
         this.requisitosMin=requisitosMax;
+        idJuego=0;
     }
 
     @Override
