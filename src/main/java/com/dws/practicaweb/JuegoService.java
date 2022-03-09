@@ -4,12 +4,10 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class JuegoService {
     private Map<Long, Juego> juegos = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
 
     public void addJuego(long idJuego, Juego juego){
         juego.setIdJuego(idJuego);
@@ -46,6 +44,8 @@ public class JuegoService {
         this.juegos.put(idJuego, juegoModificado);
 
         return juegoModificado;
+
+
     }
 
 }

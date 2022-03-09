@@ -59,7 +59,7 @@ public class JuegoController {
     public String modificarJuego(Model model, @RequestParam String nombre, @RequestParam Componentes requisitosMax, @RequestParam Componentes requisitosMin){
         Juego aux = new Juego(nombre, requisitosMax, requisitosMin);
         service.modifyJuego(aux.getIdJuego(), aux);
-        return "modJuego";
+        return "modificarJuego";
         //es distinto de modJuego en la anterior funcion, no se me ocurre nombre en español, al pasarlo a ing hay q cambiarlo, x ej updated o algo asi
 
     }

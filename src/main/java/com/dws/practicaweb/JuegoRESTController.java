@@ -18,19 +18,19 @@ public class JuegoRESTController {
     @Autowired
     JuegoService service;
 
-    @GetMapping("juegos")
+    @GetMapping("/juegos")
     public HttpEntity<?> getJuegos() {
         if (service.getJuegos().isEmpty()) {
-            return new ResponseEntity<>("There are no games", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No hay juego registrados", HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(service.getJuegos(), HttpStatus.OK);
         }
     }
-    //hasta aqui hecho
+
     @GetMapping("/{idJuego}")
     public ResponseEntity<Juego> getJuego(@PathVariable long idJuego) {
 
-        Juego juego = juegos.get(idJuego);
+        Juego juego = service.getJuego(idJuego);
 
         if (juego != null) {
             return new ResponseEntity<>(juego, HttpStatus.OK);
@@ -42,24 +42,17 @@ public class JuegoRESTController {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Juego createJuego(@RequestBody Juego juego) {
-
-        long idJuego = lastId.incrementAndGet();
-        juego.setIdJuego(idJuego);
-        juegos.put(idJuego, juego);
-
+        service.addJuego(juego.getIdJuego(), juego);
         return juego;
     }
 
     @PutMapping("/{idJuego}")
     public ResponseEntity<Juego> updateJuego(@PathVariable long idJuego, @RequestBody Juego newJuego) {
 
-        Juego oldJuego = juegos.get(idJuego);
+        Juego oldJuego = service.getJuego(idJuego);
 
         if (oldJuego != null) {
-
-            newJuego.setIdJuego(idJuego);
-            juegos.put(idJuego, newJuego);
-
+            service.addJuego(idJuego,newJuego);
             return new ResponseEntity<>(newJuego, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,9 +62,10 @@ public class JuegoRESTController {
     @DeleteMapping("/{idJuego}")
     public ResponseEntity<Juego> deleteJuego(@PathVariable long idJuego) {
 
-        Juego juego = juegos.remove(idJuego);
+        Juego juego = service.getJuego(idJuego);
 
         if (juego != null) {
+            service.deleteJuego(idJuego);
             return new ResponseEntity<>(juego, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
