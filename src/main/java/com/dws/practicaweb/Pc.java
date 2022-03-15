@@ -8,14 +8,12 @@ import lombok.NoArgsConstructor;
 public class Pc {
 
     private long idPc;
-    private Componentes componentes;
-
-    public Pc(Componentes componentes){
-        this.componentes=componentes;
-    }
+    private String ram;
+    private String graphicCard;
+    private String cpu;
 
     @Override
     public String toString() {
-        return "El pc tiene estos componentes:" + componentes;
+        return "El pc tiene estos componentes:" + "Ram= " + ram + "grafica: " + graphicCard + "procesador: " + cpu;
     }
 }

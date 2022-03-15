@@ -59,7 +59,7 @@ public class GameController {
     public String updateGame(Model model, @RequestParam String name, @RequestParam String ramMin, @RequestParam String graphicCardMin, @RequestParam String cpuMin, @RequestParam String ramMax, @RequestParam String graphicCardMax, @RequestParam String cpuMax){
         Game aux = new Game(name, ramMin, graphicCardMin, cpuMin, ramMax, graphicCardMax, cpuMax);
         service.updateGame(aux.getGameId(), aux);
-        return "updateGame";
+        return "modifyGame";
 
     }
 }

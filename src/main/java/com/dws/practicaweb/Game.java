@@ -24,7 +24,6 @@ public class Game {
         this.ramMax=ramMax;
         this.graphicCardMax=graphicCardMax;
         this.cpuMax=cpuMax;
-        gameId=0;
     }
 
     @Override
