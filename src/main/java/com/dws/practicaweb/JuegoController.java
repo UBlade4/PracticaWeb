@@ -18,8 +18,8 @@ public class JuegoController {
 
     @PostConstruct
     public void init() {
-        Juego juego1 = new Juego("Red Dead 2", (new Componentes(12, "1080 GTX 4GB", "Intel I5 8va Gen")), (new Componentes(16, "2070 RTX 6GB", "Intel I7 9na Gen")));
-        Juego juego2 = new Juego("Minecraft", (new Componentes(4, "126 MB", "Intel I4 5va Gen")), (new Componentes(8, "1070 GTX 4GB", "Intel I5 8va Gen")));
+        Juego juego1 = new Juego("Red Dead 2", (new Componentes("12", "1080 GTX 4GB", "Intel I5 8va Gen")), (new Componentes("16", "2070 RTX 6GB", "Intel I7 9na Gen")));
+        Juego juego2 = new Juego("Minecraft", (new Componentes("4", "126 MB", "Intel I4 5va Gen")), (new Componentes("8", "1070 GTX 4GB", "Intel I5 8va Gen")));
 
         service.addJuego(juego1.getIdJuego(), juego1);
         service.addJuego(juego2.getIdJuego(), juego2);
@@ -60,7 +60,6 @@ public class JuegoController {
         Juego aux = new Juego(nombre, requisitosMax, requisitosMin);
         service.modifyJuego(aux.getIdJuego(), aux);
         return "modificarJuego";
-        //es distinto de modJuego en la anterior funcion, no se me ocurre nombre en español, al pasarlo a ing hay q cambiarlo, x ej updated o algo asi
 
     }
 

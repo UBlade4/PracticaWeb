@@ -5,26 +5,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Componentes {
 
-    private int ram;
+    private String ram;
     private String grafica;
     private String procesador;
 
-    public Componentes(int ram, String grafica, String procesador ){
+    public Componentes(String ram, String grafica, String procesador ){
         this.grafica=grafica;
         this.procesador=procesador;
-        if(ram==4||ram ==8||ram==12||ram==16||ram==32){
+        if(ram=="4"||ram =="8"||ram=="12"||ram=="16"||ram=="32"){
             this.ram=ram;
         }else{
-            ram=0;
+            ram="0";
         }
     }
 
 
-    public int getRam() {
+    public String getRam() {
         return ram;
     }
 
-    public void setRam(int ram) {
+    public void setRam(String ram) {
         this.ram = ram;
     }
 
