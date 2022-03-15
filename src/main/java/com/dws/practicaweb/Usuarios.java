@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 
 public class Usuarios {
 
-    private long idUsuario;
-    private String telefono;
-    private String nombre;
-    private String correo;
-    private boolean administrador;
+    private long userId;
+    private String phoneNumber;
+    private String name;
+    private String email;
+    private boolean admin;
 }

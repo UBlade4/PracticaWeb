@@ -29,7 +29,7 @@ public class JuegoController {
     public String newGame(Model model, @RequestParam String nombre, @RequestParam Componentes requisitosMax, @RequestParam Componentes requisitosMin){
         Juego aux = new Juego(nombre, requisitosMax, requisitosMin);
         service.addJuego(aux.getIdJuego(), aux);
-        return "juegoCreado";
+        return "gameCreated";
     }
 
     @GetMapping("/mostrarJuegos")
@@ -46,20 +46,20 @@ public class JuegoController {
             return "error";
         }
         model.addAttribute("juego", juego);
-        return "verJuego";
+        return "showGame";
     }
 
     @GetMapping("/{idJuego}/modJuego")
     public String modJuego(Model model, @PathVariable long idJuego) {
         model.addAttribute("idJuego", idJuego);
-        return "modJuego";
+        return "modGame";
     }
 
     @GetMapping("/modificarJuego")
     public String modificarJuego(Model model, @RequestParam String nombre, @RequestParam Componentes requisitosMax, @RequestParam Componentes requisitosMin){
         Juego aux = new Juego(nombre, requisitosMax, requisitosMin);
         service.modifyJuego(aux.getIdJuego(), aux);
-        return "modificarJuego";
+        return "modifyGame";
 
     }
 
