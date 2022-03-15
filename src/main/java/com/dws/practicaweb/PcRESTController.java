@@ -47,7 +47,7 @@ public class PcRESTController {
     }
 
     @PutMapping("/{idPc}")
-    public ResponseEntity<Pc> updatePc(@PathVariable long idPc, @RequestBody Pc newPc) {
+    public ResponseEntity<Pc> updatedPc(@PathVariable long idPc, @RequestBody Pc newPc) {
 
         Pc oldPc = pcs.get(idPc);
 
