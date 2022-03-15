@@ -1,6 +1,6 @@
 .button {
     font-family: Arial, serif;
-    background-color: #4CAF50;
+    background-color: blue;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -8,9 +8,11 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 40px;
+    border-radius: 20px;
 }
-
+label{
+    text-align: center;
+}
 
 body {
     font-family: Arial, serif;
