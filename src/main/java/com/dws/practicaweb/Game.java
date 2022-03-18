@@ -28,6 +28,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return "El juego " + name + "Tiene estos requsitos minimos:" + "Ram= " + ramMin + "grafica: " + graphicCardMin + "procesador: " + cpuMin + "Y estos requisitos recomendados: " + "Ram= " + ramMax + "grafica: " + graphicCardMax + "procesador: " + cpuMax;
+        return  name + "; Id= " + gameId;
     }
 }

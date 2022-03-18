@@ -2,19 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Juego {id}</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <title>Juego {{gameId}}</title>
 </head>
 <body>
-    <h1>Nombre: {{nombre}}</h1>
+    <h1>Nombre: {{game.name}}</h1>
     <h2>Requisitos Minimos: </h2>
-    <h3>Ram: {{ramMin}}</h3>
-    <h3>Grafica: {{graphicCardMin}}</h3>
-    <h3>Procesador: {{cpuMin}}</h3>
+    <p>Ram: {{game.ramMin}}</p>
+    <p>Grafica: {{game.graphicCardMin}}</p>
+    <p>Procesador: {{game.cpuMin}}</p>
 
     <h2>Requisitos Recomendados: </h2>
-    <h3>Ram: {{ramMax}}</h3>
-    <h3>Grafica: {{graphicCardMax}}</h3>
-    <h3>Procesador: {{cpuMax}}</h3>
+    <p>Ram: {{game.ramMax}}</p>
+    <p>Grafica: {{game.graphicCardMax}}</p>
+    <p>Procesador: {{game.cpuMax}}</p>
+
+    <form method="get" action="/games/deleteGame/{{game.gameId}}">
+        <input name="gameId" type="hidden" value="{{game.gameId}}">
+        <input class="button" type="submit" value="Delete">
+    </form>
+
+    <form method="get" action="/games/{{gameId}}/updatedGame">
+        <input name="gameId" type="hidden" value="{{game.gameId}}">
+        <input class="button" type="submit" value="Update">
+    </form>
+    <a class="button" href="../">Inicio</a>
+
 </body>
 </html>

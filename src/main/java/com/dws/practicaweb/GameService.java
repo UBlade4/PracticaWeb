@@ -4,64 +4,60 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class GameService {
     private Map<Long, Game> games = new ConcurrentHashMap<>();
+    private AtomicLong lastid=new AtomicLong();
 
-    public void addGame(long gameId, Game game){
+    public void addGame(Game game){
+        long gameId=lastid.incrementAndGet();
         game.setGameId(gameId);
-        this.games.put(gameId, game);
+        games.put(gameId, game);
     }
 
     public Collection<Game> getGames(){
-        return this.games.values();
+        return games.values();
     }
 
     public Game getGame(long gameId){
-        return this.games.get(gameId);
+        return games.get(gameId);
     }
 
-    public Game deleteGame(long gameId){
-        Game aux = this.games.get(gameId);
-        this.games.remove(gameId);
-        return aux;
+    public void deleteGame(long gameId){
+        games.remove(gameId);
     }
 
-    public Game updateGame(long gameId, Game gameMod) {     //gameMod refers to the modified game
-        Game game = this.games.get(gameId);
+    public void updateGame(long gameId, Game gameMod) {     //gameMod refers to the modified game
+
         if(gameMod.getName() == null){
-            gameMod.setName(game.getName());
+            gameMod.setName(gameMod.getName());
         }
         if(gameMod.getRamMin() ==null) {
-            gameMod.setRamMin(game.getRamMin());
+            gameMod.setRamMin(gameMod.getRamMin());
         }
         if(gameMod.getGraphicCardMin() ==null) {
-            gameMod.setGraphicCardMin(game.getGraphicCardMin());
+            gameMod.setGraphicCardMin(gameMod.getGraphicCardMin());
         }
 
         if(gameMod.getCpuMin()==null){
-            gameMod.setCpuMin(game.getCpuMin());
+            gameMod.setCpuMin(gameMod.getCpuMin());
         }
-        
+
         if(gameMod.getRamMax()==null){
-            gameMod.setRamMax(game.getRamMax());
+            gameMod.setRamMax(gameMod.getRamMax());
         }
-        
+
         if(gameMod.getGraphicCardMax()==null){
-            gameMod.setGraphicCardMax(game.getGraphicCardMax());
+            gameMod.setGraphicCardMax(gameMod.getGraphicCardMax());
         }
-        
+
         if(gameMod.getCpuMax()==null){
-            gameMod.setCpuMax(game.getCpuMax());
+            gameMod.setCpuMax(gameMod.getCpuMax());
         }
-        
         gameMod.setGameId(gameId);
-        this.games.put(gameId, gameMod);
-
-        return gameMod;
-
-
+        games.put(gameId, gameMod);
     }
 
 }

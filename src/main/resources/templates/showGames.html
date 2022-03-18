@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Juegos Disponibles</h1>
+{{#games}}
+
+    <h2>Juego {{-index}}:</h2>
+        <p>{{.}}</p>
+    <a class="button" href="/games/{{gameId}}">Detalles </a><br>
+{{/games}}
+</body>
+</html>

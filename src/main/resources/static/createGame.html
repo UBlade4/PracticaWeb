@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Modificar Juego</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<form action="createGame.html">
+<form method="get" action="/games/newGame">
     <label>Nombre: </label>
     <label>
         <input name='name' type='text'>
@@ -20,7 +19,7 @@
     <br>
     <label>Ram: </label>
     <label>
-        <select name="ram">
+        <select name="ramMin">
             <option>4</option>
             <option>8</option>
             <option>12</option>
@@ -34,7 +33,7 @@
     <br>
     <br>
     <label>
-        <input name='name' type='text'>
+        <input name='cpuMin' type='text'>
     </label>
     <br>
     <br>
@@ -43,7 +42,7 @@
     <br>
 
     <label>
-        <input name='name' type='text'>
+        <input name='graphicCardMin' type='text'>
     </label>
     <br>
     <br>
@@ -52,12 +51,12 @@
 
 
 
-    <label>REQUISITOS MAXIMOS: </label>
+    <label>REQUISITOS RECOMENDADOS: </label>
     <br>
     <br>
     <label>Ram: </label>
     <label>
-        <select name="ram">
+        <select name="ramMax">
             <option>4</option>
             <option>8</option>
             <option>12</option>
@@ -71,7 +70,7 @@
     <br>
     <br>
     <label>
-        <input name='name' type='text'>
+        <input name='cpuMax' type='text'>
     </label>
     <br>
     <br>
@@ -80,7 +79,7 @@
     <br>
 
     <label>
-        <input name='name' type='text'>
+        <input name='graphicCardMax' type='text'>
     </label>
     <br>
     <br>
