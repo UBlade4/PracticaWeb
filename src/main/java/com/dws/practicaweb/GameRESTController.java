@@ -47,7 +47,7 @@ public class GameRESTController {
     public ResponseEntity<Game> updatedGame(@PathVariable long gameId, @RequestBody Game newGame) {
 
         if ((service.getGame(gameId)==null)) {
-            service.addGame(newGame);
+            service.updateGame(gameId,newGame);
             return new ResponseEntity<>(newGame, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
