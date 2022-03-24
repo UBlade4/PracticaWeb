@@ -5,8 +5,47 @@
     <title>Modificar Juego</title>
     <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
+<script>
+    $("#updateForm").submit(function(event) {
+        event.preventDefault();
+        ajaxPut();
+    });
+
+    function ajaxPut() {
+
+
+        var formData = {
+            gameId : $("#gameId").val(),
+            name : $("#name").val(),
+            ramMin : $("#ramMin").val(),
+            graphicCardMin: $("#graphicCardMin").val(),
+            cpuMin: $("#cpuMin").val(),
+            ramMax : $("#raMax").val(),
+            graphicCardMax: $("#graphicCardMax").val(),
+            cpuMax: $("#cpuMax").val()
+        }
+
+        $.ajax({
+            type : "PUT",
+            contentType : "application/json",
+            url : "games/updateGame",
+            data : JSON.stringify(formData),
+            dataType : 'json',
+            success : function(result) {
+                console.log(result);
+            },
+            error : function(e) {
+                alert("Error!")
+                console.log("ERROR: ", e);
+            }
+        });
+
+    }
+
+</script>
+
 <body>
-<form action="/updateGame">
+<form id="updateForm">
     <label>Nombre: </label>
     <label>
         <input name='name' type='text'>
@@ -20,7 +59,7 @@
     <br>
     <label>Ram: </label>
     <label>
-        <select name="ram">
+        <select name="ramMin">
             <option>4</option>
             <option>8</option>
             <option>12</option>
@@ -34,7 +73,7 @@
     <br>
     <br>
     <label>
-        <input name='name' type='text'>
+        <input name='cpuMin' type='text'>
     </label>
     <br>
     <br>
@@ -43,7 +82,7 @@
     <br>
 
     <label>
-        <input name='name' type='text'>
+        <input name='graphicCardMin' type='text'>
     </label>
     <br>
     <br>
@@ -57,7 +96,7 @@
     <br>
     <label>Ram: </label>
     <label>
-        <select name="ram">
+        <select name="ramMax">
             <option>4</option>
             <option>8</option>
             <option>12</option>
@@ -71,7 +110,7 @@
     <br>
     <br>
     <label>
-        <input name='name' type='text'>
+        <input name='cpuMax' type='text'>
     </label>
     <br>
     <br>
@@ -80,7 +119,7 @@
     <br>
 
     <label>
-        <input name='name' type='text'>
+        <input name='graphicCardMax' type='text'>
     </label>
     <br>
     <br>
@@ -90,7 +129,8 @@
     <input class="button" type="submit" value="SUBMIT">
     <br>
     <br>
-    <a class="button" href="index.html">Inicio</a>
+
 </form>
+<a class="button" href="../../">Inicio</a>
 </body>
 </html>

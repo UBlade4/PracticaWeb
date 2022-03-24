@@ -1,6 +1,6 @@
 .button {
-    font-family: Arial, serif;
-    background-color: blue;
+    font-family: Calibri, serif;
+    background-color: aquamarine;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -15,7 +15,7 @@ label{
 }
 
 body {
-    font-family: Arial, serif;
+    font-family: Calibri, serif;
     margin: 60px;
     text-align: center;
 }
@@ -27,8 +27,8 @@ body {
 
 
 .minibutton {
-    font-family: Arial, serif;
-    background-color: lightcoral;
+    font-family: Calibri, serif;
+    background-color: aqua;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -40,34 +40,34 @@ body {
 }
 
 textarea {
-    font-family: Arial, serif;
+    font-family: Calibri, serif;
     vertical-align: top;
 }
 
 .box {
-    font-family: Arial, serif;
+    font-family:  Calibri, serif;
     color: white;
     font-size: 18px;
     font-weight: 400;
     text-align: center;
-    background: #16aaff;
+    background: #013e71;
     margin: 0 0 25px;
     overflow: hidden;
     padding: 20px;
 }
 
 h1 {
-    font-family: Arial, serif;
-    background: aqua;
+    font-family: Calibri, serif;
+    background: #22ff00;
     font-size: xx-large;
 }
 
 .contenedor {
-    #background-color:red;
+    #background-color:salmon;
 
 }
 .cabecera {
-    #background-color:pink;
+    #background-color:indianred;
 
 }
 .menu {

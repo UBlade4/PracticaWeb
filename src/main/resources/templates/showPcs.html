@@ -5,6 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Pcs Disponibles</h1>
+{{#pcs}}
 
+<h2>Pc {{-index}}:</h2>
+<a class="button" href="/pcs/{{pcId}}">Detalles </a><br>
+{{/pcs}}
 </body>
 </html>
