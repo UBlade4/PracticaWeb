@@ -1,5 +1,7 @@
 package com.dws.practicaweb;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,22 +15,25 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/apiPc")
 public class PcRESTController {
 
-    private Map<Long, Pc> pcs = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
+    @Autowired
+    private PcService servicePc;
 
+    @GetMapping("/pcs")
+    public HttpEntity<?> getPcs() {
 
-
-    @GetMapping("/")
-    public Collection<Pc> getPcs() {
-        return pcs.values();
+        if (servicePc.getPcs().isEmpty()) {
+            return new ResponseEntity<>("No hay juego registrados", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(servicePc.getPcs(), HttpStatus.OK);
+        }
     }
 
-    @GetMapping("/{idPc}")
-    public ResponseEntity<Pc> getPc(@PathVariable long idPc) {
+    @GetMapping("/{pcId}")
+    public ResponseEntity<Pc> getPc(@PathVariable long pcId) {
 
-        Pc pc = pcs.get(idPc);
+        Pc pc = servicePc.getPc(pcId);
 
-        if (pc != null) {
+        if ((servicePc.getPc(pcId)==null)) {
             return new ResponseEntity<>(pc, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,38 +44,32 @@ public class PcRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public Pc createPc(@RequestBody Pc pc) {
 
-        long idPc = lastId.incrementAndGet();
-        pc.setIdPc(idPc);
-        pcs.put(idPc, pc);
-
+        servicePc.addPc(pc);
         return pc;
     }
 
-    @PutMapping("/{idPc}")
-    public ResponseEntity<Pc> updatedPc(@PathVariable long idPc, @RequestBody Pc newPc) {
+    @PutMapping("/{pcId}")
+    public ResponseEntity<Pc> updatedPc(@PathVariable long pcId, @RequestBody Pc newPc) {
 
-        Pc oldPc = pcs.get(idPc);
-
-        if (oldPc != null) {
-
-            newPc.setIdPc(idPc);
-            pcs.put(idPc, newPc);
-
+        if ((servicePc.getPc(pcId)==null)) {
+            servicePc.updatePc(pcId,newPc);
             return new ResponseEntity<>(newPc, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/{idPc}")
-    public ResponseEntity<Pc> deletePc(@PathVariable long idPc) {
+    @DeleteMapping("/{pcId}")
+    public HttpEntity<Pc> deletePc(@PathVariable long pcId) {
 
-        Pc pc = pcs.remove(idPc);
+        Pc pc = servicePc.getPc(pcId);
 
-        if (pc != null) {
-            return new ResponseEntity<>(pc, HttpStatus.OK);
-        } else {
+        if (pc==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            servicePc.deletePc(pcId);
+            return new ResponseEntity<>(pc, HttpStatus.OK);
         }
     }
 }
+

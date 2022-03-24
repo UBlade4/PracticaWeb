@@ -28,6 +28,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return  name + "; Id= " + gameId;
+        return  name + ": Id= " + gameId;
     }
 }

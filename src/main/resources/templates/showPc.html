@@ -5,6 +5,20 @@
     <title>Pc {id}</title>
 </head>
 <body>
+<h1>Componentes: </h1>
+<p>Ram: {{pc.ram}}</p>
+<p>Grafica: {{pc.graphicCard}}</p>
+<p>Procesador: {{pc.cpu}}</p>
 
+<form method="get" action="/pcs/deletePc/{{pc.pcId}}">
+    <input name="pcId" type="hidden" value="{{pc.pcId}}">
+    <input class="button" type="submit" value="Delete">
+</form>
+
+<form method="get" action="/pcs/{{pcId}}/updatedPc">
+    <input name="pcId" type="hidden" value="{{pc.pcId}}">
+    <input class="button" type="submit" value="Update">
+</form>
+<a class="button" href="../">Inicio</a>
 </body>
 </html>
