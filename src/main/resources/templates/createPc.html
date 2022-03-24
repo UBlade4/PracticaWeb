@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Añadir Pc</title>
+
+    <link href="/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="/crearPc" method="post">
+
+<h1 class="box" style="text-align: center">CREAR PC</h1>
+<br>
+<form action="/crearPc" method="post" style="text-align: center">
     <p>Ram: </p>
-    <input type='text' name='ram'/>
+    <select name="ramMax">
+        <option>4</option>
+        <option>8</option>
+        <option>12</option>
+        <option>16</option>
+        <option>32</option>
+    </select>
     <p>Grafica:</p>
     <input type='text' name='grafica'/>
     <p>Procesador:</p>
     <input type='text' name='procesador'/>
-
     <br>
     <br>
     <input type='submit' value='Enviar'/>
