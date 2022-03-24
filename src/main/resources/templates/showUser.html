@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Usuario: {{user.name}}</h1>
+<p>Correo: {{user.email}}</p>
+<p>Telefono: {{user.phoneNumber}}</p>
+
+<form method="get" action="/users/deleteUser/{{user.userId}}">
+    <input name="userId" type="hidden" value="{{user.userId}}">
+    <input class="minibutton" type="submit" value="Delete">
+</form>
+<br>
+<a class="button" href="../">Inicio</a>
+</body>
+</html>

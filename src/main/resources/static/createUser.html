@@ -2,39 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir Pc</title>
+    <title>Añadir Usuario</title>
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="/pcs/newPc" method="get">
-    <h1>COMPONENTES: </h1>
+<form action="/users/newUser" method="get">
+    <h1>Nuevo Usuario: </h1>
     <br>
     <br>
-    <label>Ram: </label>
+    <label>Nombre: </label>
     <label>
-        <select name="ram">
-            <option>4</option>
-            <option>8</option>
-            <option>12</option>
-            <option>16</option>
-            <option>32</option>
-        </select>
+        <input name="name" type="text">
     </label>
     <br>
     <br>
-    <label>Procesador: </label>
+    <label>Correo: </label>
     <br>
     <br>
     <label>
-        <input name='cpu' type='text'>
+        <input name='email' type='text'>
     </label>
     <br>
     <br>
-    <label>Grafica: </label>
+    <label>Telefono: </label>
     <br>
     <br>
     <label>
-        <input name='graphicCard' type='text'>
+        <input name='phoneNumber' type='text'>
+    </label>
+    <br>
+    <br>
+    <label>Administrador: </label>
+    <br>
+    <br>
+    <label>
+        <input name='admin' type='checkbox'>
     </label>
     <br>
     <br>

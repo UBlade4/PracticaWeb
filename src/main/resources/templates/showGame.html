@@ -19,13 +19,14 @@
 
     <form method="get" action="/games/deleteGame/{{game.gameId}}">
         <input name="gameId" type="hidden" value="{{game.gameId}}">
-        <input class="button" type="submit" value="Delete">
+        <input class="minibutton" type="submit" value="Delete">
     </form>
 
     <form method="get" action="/games/{{gameId}}/updatedGame">
         <input name="gameId" type="hidden" value="{{game.gameId}}">
-        <input class="button" type="submit" value="Update">
+        <input class="minibutton" type="submit" value="Update">
     </form>
+    <br>
     <a class="button" href="../">Inicio</a>
 
 </body>

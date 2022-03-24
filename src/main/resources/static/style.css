@@ -16,6 +16,7 @@ label{
 
 body {
     font-family: Calibri, serif;
+    background-color: gray;
     margin: 60px;
     text-align: center;
 }
@@ -60,44 +61,4 @@ h1 {
     font-family: Calibri, serif;
     background: slateblue;
     font-size: xx-large;
-}
-
-.contenedor {
-    #background-color:salmon;
-
-}
-.cabecera {
-    #background-color:indianred;
-
-}
-.menu {
-    text-align: left;
-    float: left;
-    width: 20%;
-}
-.contenido {
-    float: left;
-    width: 80%;
-
-}
-.principal {
-    float: left;
-    text-align: center;
-    width: 75%;
-}
-.game {
-    float: left;
-    width: 100%;
-}
-.secundario {
-    text-align: right;
-    float: left;
-    width: 25%;
-
-}
-
-.pie {
-    text-align: left;
-    clear: both;
-
 }
