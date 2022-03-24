@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Modificar Juego</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form method="get" action="/games/newGame">
-    <label>Nombre: </label>
+    <h1>Nombre: </h1>
     <label>
         <input name='name' type='text'>
     </label>
@@ -14,7 +15,9 @@
     <br>
     <br>
     <br>
-    <label>REQUISITOS MINIMOS: </label>
+    <a>
+
+    <h2>REQUISITOS MINIMOS: </h2>
     <br>
     <br>
     <label>Ram: </label>
@@ -48,10 +51,10 @@
     <br>
     <br>
     <br>
+    </a>
 
-
-
-    <label>REQUISITOS RECOMENDADOS: </label>
+    <div>
+    <h2>REQUISITOS RECOMENDADOS: </h2>
     <br>
     <br>
     <label>Ram: </label>
@@ -83,13 +86,13 @@
     </label>
     <br>
     <br>
+    </div>
 
 
-
-    <input class="button" type="submit" value="SUBMIT">
+    <input class="minibutton" type="submit" value="SUBMIT">
     <br>
     <br>
-    <a class="button" href="index.html">Inicio</a>
+    <a class="minibutton" href="index.html">Inicio</a>
 </form>
 </body>
 </html>
