@@ -11,24 +11,27 @@ import org.springframework.web.bind.annotation.*;
 public class GameRESTController {
 
     @Autowired
+    private GameRepository repository;
+
+    @Autowired
     private GameService service;
 
     @GetMapping("/games")
     public HttpEntity<?> getGames() {
 
-        if (service.getGames().isEmpty()) {
+        if (repository.findAll().isEmpty()) {
             return new ResponseEntity<>("No hay juego registrados", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(service.getGames(), HttpStatus.OK);
+            return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
         }
     }
 
     @GetMapping("/{gameId}")
     public ResponseEntity<Game> getGame(@PathVariable long gameId) {
 
-        Game game = service.getGame(gameId);
+        Game game = repository.findById(gameId).get();
 
-        if ((service.getGame(gameId)==null)) {
+        if (repository.findById(gameId).isPresent()) {
             return new ResponseEntity<>(game, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,14 +42,14 @@ public class GameRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public Game createGame(@RequestBody Game game) {
 
-        service.addGame(game);
+        repository.save(game);
         return game;
     }
 
     @PutMapping("/{gameId}")
     public ResponseEntity<Game> updatedGame(@PathVariable long gameId, @RequestBody Game newGame) {
 
-        if ((service.getGame(gameId)==null)) {
+        if ((repository.findById(gameId).isEmpty())) {
             service.updateGame(gameId,newGame);
             return new ResponseEntity<>(newGame, HttpStatus.OK);
         } else {
@@ -57,12 +60,12 @@ public class GameRESTController {
     @DeleteMapping("/{gameId}")
     public HttpEntity<Game> deleteGame(@PathVariable long gameId) {
 
-        Game game = service.getGame(gameId);
+        Game game = repository.findById(gameId).get();
 
-        if (game==null){
+        if (repository.findById(gameId).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            service.deleteGame(gameId);
+            repository.delete(game);
             return new ResponseEntity<>(game, HttpStatus.OK);
         }
     }

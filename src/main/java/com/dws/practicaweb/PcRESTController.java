@@ -16,24 +16,26 @@ import java.util.concurrent.atomic.AtomicLong;
 public class PcRESTController {
 
     @Autowired
+    private PcRepository repositoryPc;
+    @Autowired
     private PcService servicePc;
 
     @GetMapping("/pcs")
     public HttpEntity<?> getPcs() {
 
-        if (servicePc.getPcs().isEmpty()) {
+        if (repositoryPc.findAll().isEmpty()) {
             return new ResponseEntity<>("No hay juego registrados", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(servicePc.getPcs(), HttpStatus.OK);
+            return new ResponseEntity<>(repositoryPc.findAll(), HttpStatus.OK);
         }
     }
 
     @GetMapping("/{pcId}")
     public ResponseEntity<Pc> getPc(@PathVariable long pcId) {
 
-        Pc pc = servicePc.getPc(pcId);
+        Pc pc = repositoryPc.getById(pcId);
 
-        if ((servicePc.getPc(pcId)==null)) {
+        if ((repositoryPc.findById(pcId).isPresent())) {
             return new ResponseEntity<>(pc, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,14 +46,14 @@ public class PcRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public Pc createPc(@RequestBody Pc pc) {
 
-        servicePc.addPc(pc);
+        repositoryPc.save(pc);
         return pc;
     }
 
     @PutMapping("/{pcId}")
     public ResponseEntity<Pc> updatedPc(@PathVariable long pcId, @RequestBody Pc newPc) {
 
-        if ((servicePc.getPc(pcId)==null)) {
+        if ((repositoryPc.findById(pcId).isPresent())) {
             servicePc.updatePc(pcId,newPc);
             return new ResponseEntity<>(newPc, HttpStatus.OK);
         } else {
@@ -62,12 +64,12 @@ public class PcRESTController {
     @DeleteMapping("/{pcId}")
     public HttpEntity<Pc> deletePc(@PathVariable long pcId) {
 
-        Pc pc = servicePc.getPc(pcId);
+        Pc pc = repositoryPc.getById(pcId);
 
-        if (pc==null){
+        if (repositoryPc.findById(pcId).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            servicePc.deletePc(pcId);
+            repositoryPc.delete(pc);
             return new ResponseEntity<>(pc, HttpStatus.OK);
         }
     }

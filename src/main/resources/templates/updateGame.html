@@ -5,47 +5,8 @@
     <title>Modificar Juego</title>
     <link type="text/css" rel="stylesheet" href="/style.css"/>
 </head>
-<script>
-    $("#updateForm").submit(function(event) {
-        event.preventDefault();
-        ajaxPut();
-    });
-
-    function ajaxPut() {
-
-
-        var formData = {
-            gameId : $("#gameId").val(),
-            name : $("#name").val(),
-            ramMin : $("#ramMin").val(),
-            graphicCardMin: $("#graphicCardMin").val(),
-            cpuMin: $("#cpuMin").val(),
-            ramMax : $("#raMax").val(),
-            graphicCardMax: $("#graphicCardMax").val(),
-            cpuMax: $("#cpuMax").val()
-        }
-
-        $.ajax({
-            type : "PUT",
-            contentType : "application/json",
-            url : "games/updateGame",
-            data : JSON.stringify(formData),
-            dataType : 'json',
-            success : function(result) {
-                console.log(result);
-            },
-            error : function(e) {
-                alert("Error!")
-                console.log("ERROR: ", e);
-            }
-        });
-
-    }
-
-</script>
-
 <body>
-<form id="updateForm">
+<form action="/ updateGame">
     <label>Nombre: </label>
     <label>
         <input name='name' type='text'>

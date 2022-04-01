@@ -11,24 +11,27 @@ import org.springframework.web.bind.annotation.*;
 public class UserRESTController {
 
     @Autowired
+    private UserRepository repository;
+
+    @Autowired
     private UserService service;
 
     @GetMapping("/users")
     public HttpEntity<?> getUsers() {
 
-        if (service.getUsers().isEmpty()) {
+        if (repository.findAll().isEmpty()) {
             return new ResponseEntity<>("No hay juego registrados", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(service.getUsers(), HttpStatus.OK);
+            return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
         }
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUser(@PathVariable long userId) {
 
-        User user = service.getUser(userId);
+        User user = repository.getById(userId);
 
-        if ((service.getUser(userId)==null)) {
+        if ((repository.findById(userId).isPresent())) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,14 +42,14 @@ public class UserRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user) {
 
-        service.addUser(user);
+        repository.save(user);
         return user;
     }
 
     @PutMapping("/{userId}")
     public ResponseEntity<User> updatedUser(@PathVariable long userId, @RequestBody User newUser) {
 
-        if ((service.getUser(userId)==null)) {
+        if ((repository.findById(userId).isPresent())) {
             service.updateUser(userId,newUser);
             return new ResponseEntity<>(newUser, HttpStatus.OK);
         } else {
@@ -57,12 +60,12 @@ public class UserRESTController {
     @DeleteMapping("/{userId}")
     public HttpEntity<User> deleteUser(@PathVariable long userId) {
 
-        User user = service.getUser(userId);
+        User user = repository.getById(userId);
 
-        if (user==null){
+        if (repository.findById(userId).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            service.deleteUser(userId);
+            repository.delete(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }

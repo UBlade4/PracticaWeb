@@ -13,13 +13,15 @@ import javax.annotation.PostConstruct;
 @RequestMapping("/pcs")
 public class PcController {
     @Autowired
+    private PcRepository repositoryPc;
+    @Autowired
     private PcService servicePc;
 
 
     @PostConstruct
     public void init() {
-        servicePc.addPc(new Pc("12", "1080 GTX 4GB", "Intel I5 8va Gen"));
-        servicePc.addPc(new Pc("4", "126 MB", "Intel I4 5va Gen"));
+        repositoryPc.save(new Pc("12", "1080 GTX 4GB", "Intel I5 8va Gen"));
+        repositoryPc.save(new Pc("4", "126 MB", "Intel I4 5va Gen"));
 
 
     }
@@ -27,20 +29,20 @@ public class PcController {
     @GetMapping("/newPc")
     public String newPc(Model model, @RequestParam String ram, @RequestParam String graphicCard, @RequestParam String cpu){
         Pc aux = new Pc(ram, graphicCard, cpu);
-        servicePc.addPc(aux);
+        repositoryPc.save(aux);
         return "pcCreated";
     }
 
     @GetMapping("/showPcs")
     public String showPcs(Model model){
-        model.addAttribute("pcs", servicePc.getPcs());
+        model.addAttribute("pcs", repositoryPc.findAll());
         return "showPcs";
     }
 
     @GetMapping("/{pcId}")
     public String showPc(Model model, @PathVariable long pcId){
-        Pc pc = servicePc.getPc(pcId);
-        if (pc==null){
+        Pc pc = repositoryPc.findById(pcId).get();
+        if (repositoryPc.findById(pcId).isEmpty()){
             return "error";
         }
         model.addAttribute("pc", pc);
@@ -64,7 +66,7 @@ public class PcController {
     @GetMapping ("/deletePc/{pcId}")
     public String deletePc(Model model, @PathVariable long pcId){
         model.addAttribute("pcId", pcId);
-        servicePc.deletePc(pcId);
+        repositoryPc.delete(repositoryPc.getById(pcId));
         return "/deletePc";
     }
 }
